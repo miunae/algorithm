@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Main_1541_이재훈 {
 
@@ -9,16 +9,20 @@ public class Main_1541_이재훈 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String exp = br.readLine();
 		int answer = 0;
-		String[] str = exp.split("-");
-		answer = Integer.parseInt(str[0]);
-		for(int i=1;i<str.length;i++) {
-			String[] tmp = str[i].split("\\+");
+		String[] strs = exp.split("-");
+		ArrayList<Integer> list = new ArrayList<>();
+		for(String str : strs) {
 			int sum = 0;
-			for(int j=0;j<tmp.length;j++) {
-				sum += Integer.parseInt(tmp[j]);
+			String[] plus = str.split("\\+");
+			for(String n : plus) {
+				sum += Integer.parseInt(n);
 			}
-			answer -= sum;
+			list.add(sum);
 		}
+		for(int i=1;i<list.size();i++) {
+			answer -= list.get(i);
+		}
+		answer += list.get(0);
 		System.out.println(answer);
 	}
 
