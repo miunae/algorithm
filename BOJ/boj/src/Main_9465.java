@@ -1,7 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+<<<<<<< HEAD
 import java.util.StringTokenizer;
+=======
+>>>>>>> 137bb96024fb02be2e34bcf2dacc101a4a3d9138
 
 public class Main_9465 {
 
@@ -11,6 +14,7 @@ public class Main_9465 {
 		for(int t=0;t<T;t++) {
 			int N = Integer.parseInt(br.readLine());
 			int[][] arr = new int[2][N];
+<<<<<<< HEAD
 			// 스티커판 생성
 			for(int i=0;i<2;i++) {
 				StringTokenizer st = new StringTokenizer(br.readLine());
@@ -54,6 +58,8 @@ public class Main_9465 {
 				sum = Math.max(firstSum+(sum2-secondSum)+max1, secondSum+(sum1-firstSum)+max2);
 			}
 			System.out.println(sum);
+=======
+>>>>>>> 137bb96024fb02be2e34bcf2dacc101a4a3d9138
 		}
 	}
 
