@@ -30,17 +30,24 @@ public class Solution_1238_이재훈 {
 		deque.offerLast(start);
 		int max = 0;
 		boolean[] visited = new boolean[101];
+		ArrayList<Integer> maxList = new ArrayList<>();
 		while(!deque.isEmpty()) {
-			int tmp = deque.pollFirst();
-			for(int i=0;i<nodeList.get(tmp).size();i++) {
-				int node = nodeList.get(tmp).get(i);
-				if(!visited[node]) {
-					visited[node] = true;
-					deque.offerLast(node);
+			int size = deque.size();
+			max = 0;
+			while(size --> 0) {
+				int tmp = deque.pollFirst();
+				for(int i=0;i<nodeList.get(tmp).size();i++) {
+					int node = nodeList.get(tmp).get(i);
+					if(!visited[node]) {
+						visited[node] = true;
+						deque.offerLast(node);
+						max = Math.max(max, node);
+					}
 				}
 			}
+			maxList.add(max);
 		}
 		
-		return max;
+		return maxList.get(maxList.size()-2);
 	}
 }
