@@ -26,6 +26,20 @@ public class Main_14621_이재훈 {
 		}
 	}
 
+	static class Vertex implements Comparable<Vertex> {
+		int no, weight;
+
+		Vertex(int no, int weight) {
+			this.no = no;
+			this.weight = weight;
+		}
+
+		@Override
+		public int compareTo(Vertex o) {
+			return this.weight - o.weight;
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -46,35 +60,43 @@ public class Main_14621_이재훈 {
 			int to = Integer.parseInt(st.nextToken());
 			int weight = Integer.parseInt(st.nextToken());
 			nodeList[from].add(new Node(from, to, weight)); // 인접리스트 만들어줌.
-			nodeList[to].add(new Node(to,from,weight));
+			nodeList[to].add(new Node(to, from, weight));
 		}
-		boolean[] visited = new boolean[N+1];
-		int[] minEdge = new int[N+1];
+		boolean[] visited = new boolean[N + 1];
+		int[] minEdge = new int[N + 1];
 		int cnt = 0, result = 0;
 		Arrays.fill(minEdge, Integer.MAX_VALUE);
-		PriorityQueue<Node> pq = new PriorityQueue<>();
+		PriorityQueue<Vertex> pq = new PriorityQueue<>();
 		minEdge[1] = 0;
-		pq.add(new Node(1, 1, minEdge[1]));
+		pq.add(new Vertex(1, minEdge[1]));
 
 		while (!pq.isEmpty()) {
-			Node minVertex = pq.poll();
-			if (visited[minVertex.to])
+			Vertex minVertex = pq.poll();
+			if (visited[minVertex.no])
 				continue;
-			visited[minVertex.to] = true;
-//			System.out.println(minVertex.weight);
+			visited[minVertex.no] = true;
+//			System.out.println(minVertex.no + " " + minVertex.weight);
+//			System.out.println(cnt);
 			result += minVertex.weight;
 			if (++cnt == N)
 				break;
 
-			for (Node node : nodeList[minVertex.to]) {
-				if (!visited[node.to] && minEdge[node.to] > node.weight
-						&& genderList[node.from] != genderList[node.to]) {
-					minEdge[node.to] = node.weight;
-					pq.offer(new Node(node.from, node.to, minEdge[node.to]));
+			for (Node node : nodeList[minVertex.no]) {
+				if (!visited[node.to] && minEdge[node.to] > node.weight) {
+
+					if (genderList[minVertex.no] == genderList[node.to])
+						continue;
+					else {
+						minEdge[node.to] = node.weight;
+						pq.add(new Vertex(node.to, minEdge[node.to]));
+					}
 				}
 			}
 		}
-		System.out.println(result);
+		if(cnt != N)
+			System.out.println(-1);
+		else
+			System.out.println(result);
 	}
 
 }
