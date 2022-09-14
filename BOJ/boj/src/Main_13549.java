@@ -24,7 +24,7 @@ public class Main_13549 {
 			Point point = queue.poll();
             visited[point.pos] = true; //3가지케이스에 큐에 offer한다음에 방문처리하면 우선순위때문에 최소거리 바뀌는 경우 발생함
             if (point.pos == K) {
-                cnt = point.time;
+                cnt = Math.min(cnt,point.time);
             }
             if (point.pos * 2 <= 100000 && !visited[point.pos * 2]) { // 0초 순간이동
                 queue.offer(new Point(point.pos * 2, point.time));
