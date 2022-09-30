@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
  * 세로(state:2) => 아래 칸 or 오른쪽  아래칸 비어있어야함.
  * 대각선(state:3) => 오른쪽 칸 or 아래 칸 or 오른쪽 아래 칸 비어있어야 함.
  */
-public class Main_17070 {
+public class Main_17070_이재훈 {
 	static int N, cnt;
 	static int[][] map;
 	static Pipe cur;
